@@ -64,8 +64,10 @@ export default class Radar {
     this.scrollContainer = this.telescope === window ? new Container() : this.telescope;
     this.skyline = this.sky ? new Geography(this.sky) : null;
 
-    this.scrollX = this.scrollContainer ? this.scrollContainer.scrollLeft : 0;
-    this.scrollY = this.scrollContainer ? this.scrollContainer.scrollTop : 0;
+    if(this.scrollContainer) {
+      this.scrollX = this.scrollContainer ? this.scrollContainer.scrollLeft : 0;
+      this.scrollY = this.scrollContainer ? this.scrollContainer.scrollTop : 0;
+    }
     this.posX = document.body.scrollLeft;
     this.posY = document.body.scrollTop;
 
@@ -202,8 +204,10 @@ export default class Radar {
     const dY = height - _height;
     const dX = width - _width;
 
-    this.scrollY = this.scrollContainer.scrollTop += dY;
-    this.scrollX = this.scrollContainer.scrollLeft += dX;
+    if(this.scrollContainer) {
+      this.scrollY = this.scrollContainer.scrollTop += dY;
+      this.scrollX = this.scrollContainer.scrollLeft += dX;
+    }
     this.skyline.left -= dX;
     this.skyline.right -= dX;
     this.skyline.bottom -= dY;
@@ -222,8 +226,10 @@ export default class Radar {
   filterMovement() {
     // cache the scroll offset, and discard the cycle if
     // movement is within (x) threshold
-    const scrollY = this.scrollContainer.scrollTop;
-    const scrollX = this.scrollContainer.scrollLeft;
+    if(this.scrollContainer) {
+      const scrollY = this.scrollContainer.scrollTop;
+      const scrollX = this.scrollContainer.scrollLeft;
+    }
     const _scrollY = this.scrollY;
     const _scrollX = this.scrollX;
 
