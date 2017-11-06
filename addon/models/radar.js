@@ -159,9 +159,11 @@ export default class Radar {
   }
 
   resizeSatellites() {
-    this.willResizeSatellites();
-    this._resize();
-    this.didResizeSatellites();
+    if(this) {
+      this.willResizeSatellites();
+      this._resize();
+      this.didResizeSatellites();
+    }
   }
 
   updateSkyline() {
@@ -317,12 +319,14 @@ export default class Radar {
   // avoid retaining memory by deleting references
   // that likely contain other scopes to be torn down
   _teardownHooks() {
-    this.willShiftSatellites = null;
-    this.didShiftSatellites = null;
-    this.willResizeSatellites = null;
-    this.didResizeSatellites = null;
-    this.willAdjustPosition = null;
-    this.didAdjustPosition = null;
+    if(this) {
+      this.willShiftSatellites = null;
+      this.didShiftSatellites = null;
+      this.willResizeSatellites = null;
+      this.didResizeSatellites = null;
+      this.willAdjustPosition = null;
+      this.didAdjustPosition = null;
+    }
   }
 
   destroy() {
