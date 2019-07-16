@@ -226,11 +226,14 @@ export default class Radar {
   }
 
   filterMovement() {
+    let scrollY = 0;
+    let scrollX = 0;
+    
     // cache the scroll offset, and discard the cycle if
     // movement is within (x) threshold
     if(this.scrollContainer) {
-      const scrollY = this.scrollContainer.scrollTop;
-      const scrollX = this.scrollContainer.scrollLeft;
+      scrollY = this.scrollContainer.scrollTop;
+      scrollX = this.scrollContainer.scrollLeft;
     }
     const _scrollY = this.scrollY;
     const _scrollX = this.scrollX;
